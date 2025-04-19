@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Teste de Idade e Música</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #eee;
+      padding: 20px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px 0;
+      border: none;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #444;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Bem-vindo! 😎</h2>
+
+  <label for="nome">Qual é o seu nome?</label><br>
+  <input type="text" id="nome" placeholder="Digite seu nome"><br>
+
+  <label for="idade">Qual é sua idade?</label><br>
+  <input type="number" id="idade" placeholder="Digite sua idade"><br>
+
+  <button onclick="verificarIdade()">Enviar</button>
+
+  <div id="mensagem"></div>
+
+  <div id="perguntaMusica" style="display: none;">
+    <p>Você quer uma música? (sim ou não)</p>
+    <input type="text" id="resposta" placeholder="Digite sua resposta"><br>
+    <button onclick="responderMusica()">Responder</button>
+  </div>
+
+  <script>
+    let nome = "";
+
+    function verificarIdade() {
+      nome = document.getElementById("nome").value;
+      const idade = parseInt(document.getElementById("idade").value);
+      const mensagem = document.getElementById("mensagem");
+
+      if (idade >= 0 && idade <= 20) {
+        mensagem.innerHTML = `Eae ${nome}, você é novinho, vaza.`;
+      } else if (idade >= 21 && idade <= 1000) {
+        mensagem.innerHTML = `Salve ${nome}, o que você tá fazendo aqui? Velho.`;
+      } else {
+        mensagem.innerHTML = `Idade inválida, ${nome}.`;
+        return;
+      }
+
+      document.getElementById("perguntaMusica").style.display = "block";
+    }
+
+    function responderMusica() {
+      const resposta = document.getElementById("resposta").value.toLowerCase();
+      const sim = ["sim", "s", "yes", "si", "quero"];
+      const nao = ["não", "nao", "n", "no"];
+
+      if (sim.includes(resposta)) {
+        alert("Receba!");
+        window.open("https://www.youtube.com/watch?v=b7GjV_aeoK4", "_blank");
+      } else if (nao.includes(resposta)) {
+        alert(`Vai mesmo assim ${nome}.`);
+        window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
+      } else {
+        alert("Não entendi a resposta. Digite sim ou não.");
+      }
+    }
+  </script>
+
+</body>
+</html>
